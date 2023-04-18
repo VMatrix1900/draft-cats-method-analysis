@@ -10,8 +10,8 @@ number:
 date:
 consensus: true
 v: 3
-area: Routing Area
-workgroup: CATS
+area: "Routing"
+workgroup: "Computing-Aware Traffic Steering"
 keyword:
 
 author:
