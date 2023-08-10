@@ -21,6 +21,12 @@ author:
     organization: Huawei Technologies
     email: shihang9@huawei.com
     country: China
+ -
+    ins: T. Yang
+    fullname: Tianle Yang
+    organization: China Broadcast Mobile Network Company
+    email: yangtianle@10099.com.cn
+    country: China
 
 normative:
 
@@ -29,7 +35,7 @@ informative:
 
 --- abstract
 
-This document analyses different methods for distributing the computing metric from the service instance to the ingress router.
+This document analyses different methods for distributing the computing metrics from service instances to the ingress router.
 
 
 --- middle
@@ -53,7 +59,7 @@ This document uses terms defined in {{?I-D.ldbc-cats-framework}}. We list them b
 - CATS Path Selector (C-PS): An entity that determines the path toward the appropriate service location and service instances to meet a service demand given the service status and network status information.
 
 # Requirement of distributing computing metric
-The function components of the CATS is defined in {{?I-D.ldbc-cats-framework}}(see {{fig-cats-fw}}, the figure is replicated here for better understanding). C-SMA is responsible for collecting the computing metric of the service instance and distributing the metrics to the C-PS. C-PS then select the path based on the computing metric and network metric.
+The CATS functional components are defined in {{?I-D.ldbc-cats-framework}}(see {{fig-cats-fw}}, the figure is replicated here for better understanding). C-SMA is responsible for collecting the computing metrics of the service instance and distributing the metrics to the C-PSes. A C-PS then selects a path based on the computing metrics and network metrics.
 
 ~~~
       +-----+              +------+            +------+
@@ -96,22 +102,22 @@ The function components of the CATS is defined in {{?I-D.ldbc-cats-framework}}(s
 
 # Option 1: Centralized C-SMA + Centralized C-PS
 
-The computing metric can be collected internally by a centralized cloud monitor of the cloud platform. Various tools such as Prometheus for this purpose. The cloud monitor can pass the metric to the network controller. Then the network controller calculate the optimal path and distribute the path to the CATS ingress router. The ingress router just need to steer the flow to the path. The network controller distributed the metric update to the C-PS using south-bound protocol.
+The computing metrics can be collected internally with a hosting infrastructure by a centralized monitor of the hosting infrastructure. Various tools such as Prometheus for this purpose. The monitor can pass the metrics to a network controller, which behaves as a C-PS. Then, the network controller calculates the optimal path and distribute the paths to CATS ingress routers. When a service request arrives at the CATS ingress router, it just steers the request to the path. The network controller distributed the metric update to the C-PS using south-bound protocol.
 
 # Option 2: Centralized C-SMA + Distributed C-PS
 
-Similar to option 1, the network controller does not calculate the path. It just passes the computing metric received from the cloud monitor to the C-PS in the CATS ingress router. The C-PS at each CATS ingress router will calculate the best path independently.
+Similar to option 1, the network controller does not calculate the path. It just passes the computing metrics received from the cloud monitor to the C-PS embedded in a CATS ingress router. The C-PS at each CATS ingress router will proceed with path computation locally.
 
 
 # Option 3: Distributed C-SMA + Centralized C-PS
 
-The C-SMA can be deployed in a distributed way. For example, C-SMA running at each site collects the computing metric of the service instance running in the site. Then it reports the metric to the network controller. The network controller calculates the best path and distribute the path to the CATS ingress router.
+The C-SMA can be deployed in a distributed way. For example, C-SMA running at each site collects the computing metrics of the service instances running in a site. Then, it reports the metrics to a network controller, which behaved as a C-PS. The network controller calculates the best path for a service and distribute the path to a CATS ingress router.
 
 # Option 4: Distributed C-SMA + Distributed C-PS
 
-Similar to option 3, each C-SMA collect the computing metric of each site. Then it needs to distribute the metric to C-PS at each ingress router. It can do so directly or through a network controller.
+Similar to option 3, each C-SMA collects the computing metrics of each site. Then it needs to distribute the metric to C-PS at each ingress router. It can do so directly or through a network controller.
 
-# Comparison
+# Comparaison
 
 |  | Option 1 | Option 2 | Option 3 | Option 4 |
 |------+-------+------+-------+----|
