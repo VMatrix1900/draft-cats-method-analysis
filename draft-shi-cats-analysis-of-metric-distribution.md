@@ -29,7 +29,7 @@ author:
  -
     ins: X. Yi
     fullname: Xinxin Yi
-    organizaiton: China Unicom
+    organization: China Unicom
     email: yixx3@chinaunicom.cn
  -
     ins: T. Yang
