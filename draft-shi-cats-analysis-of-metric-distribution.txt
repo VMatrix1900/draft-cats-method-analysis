@@ -5,7 +5,7 @@
 Computing-Aware Traffic Steering                                  H. Shi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                                     Z. Du
-Expires: 2 September 2024                                  China Telecom
+Expires: 2 September 2024                                   China Mobile
                                                                    X. Yi
                                                                         
                                                                  T. Yang
@@ -382,7 +382,7 @@ Authors' Addresses
 
 
    Zongpeng Du
-   China Telecom
+   China Mobile
    Email: duzongpeng@foxmail.com
 
 
