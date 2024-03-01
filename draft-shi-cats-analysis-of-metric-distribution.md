@@ -147,7 +147,7 @@ In the pull mode, caching the returned computating metric for a predetermined du
 
 Both push and pull models, despite their inherent differences, share a common challenge: striking a balance between the accuracy of the distributed computating metrics and the overhead associated with their distribution. Optimizing the distribution frequency through techniques such as threshold setting or caching can help mitigate these challenges. However, it's important to acknowledge that these optimizations may compromise the precision of scheduling tasks based on these metrics, as the very latest information may not always be available. This trade-off necessitates a careful consideration of the specific requirements and constraints of the computational environment to determine the most suitable approach.
 
-# Choice 3: Grouping of the metric update message
+# Choice 3: Aggregation of metric update messages
 
 Another crucial aspect to consider in the distribution of computing metrics is the potential for aggregating updates. Specifically, in distributed C-SMA  scenarios, where an Egress point connects to multiple sites, it's feasible to consolidate updates from these sites into a single message. This aggregation strategy significantly reduces the number of individual update messages required, streamlining the process of disseminating computing metric.
 
