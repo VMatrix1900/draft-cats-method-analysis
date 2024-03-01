@@ -22,21 +22,22 @@ author:
     email: shihang9@huawei.com
     country: China
  -
-    ins: T. Yang
-    fullname: Tianle Yang
-    organization: China Broadcast Mobile Network Company
-    email: yangtianle@10099.com.cn
-    country: China
+    ins: Z. Du
+    fullname: Zongpeng Du
+    organization: China Telecom
+    email: duzongpeng@foxmail.com
  -
     ins: X. Yi
     fullname: Xinxin Yi
     organizaiton: China Unicom
     email: yixx3@chinaunicom.cn
  -
-    ins: Z. Du
-    fullname: Zongpeng Du
-    organization: China Telecom
-    email: duzongpeng@foxmail.com
+    ins: T. Yang
+    fullname: Tianle Yang
+    organization: China Broadcast Mobile Network Company
+    email: yangtianle@10099.com.cn
+    country: China
+
 
 normative:
 
