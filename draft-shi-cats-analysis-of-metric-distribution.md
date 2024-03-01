@@ -24,7 +24,7 @@ author:
  -
     ins: Z. Du
     fullname: Zongpeng Du
-    organization: China Telecom
+    organization: China Mobile
     email: duzongpeng@foxmail.com
  -
     ins: X. Yi
