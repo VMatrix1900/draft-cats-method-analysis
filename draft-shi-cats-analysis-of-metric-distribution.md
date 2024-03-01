@@ -153,7 +153,7 @@ Another crucial aspect to consider in the distribution of computing metrics is t
 
 Aggregation can be particularly beneficial in reducing network congestion and optimizing the efficiency of information distribution. By bundling updates, we not only minimize the frequency of messages but also the associated overheads, such as header information and protocol handling costs. This approach is not limited to distributed environments but is equally applicable in centralized C-SMA scenarios.
 
-In centralized C-SMA scenarios, a controller responsible for managing computing metric updates to ingress nodes can employ a similar aggregation technique. By consolidating updates for multiple sites into a single message, the system can significantly decrease the overhead associated with update protocol messages. 
+In centralized C-SMA scenarios, a controller responsible for managing computing metric updates to ingress nodes can employ a similar aggregation technique. By consolidating updates for multiple sites into a single message, the system can significantly decrease the overhead associated with update protocol messages.
 
 While aggregating computing metrics offers substantial benefits in terms of reducing network traffic and optimizing message efficiency, it's important to address a specific challenge associated with this approach: the potential delay in message timeliness due to the waiting period required for aggregation. In scenarios where computing metrics from multiple nodes are consolidated into a single update message, the updates from individual nodes might not arrive simultaneously. This discrepancy can lead to situations where updates must wait for one another before they can be aggregated and sent out.
 
