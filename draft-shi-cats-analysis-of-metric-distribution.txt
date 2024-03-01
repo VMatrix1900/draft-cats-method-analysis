@@ -4,12 +4,12 @@
 
 Computing-Aware Traffic Steering                                  H. Shi
 Internet-Draft                                       Huawei Technologies
-Intended status: Informational                                   T. Yang
-Expires: 2 September 2024         China Broadcast Mobile Network Company
+Intended status: Informational                                     Z. Du
+Expires: 2 September 2024                                  China Telecom
                                                                    X. Yi
                                                                         
-                                                                   Z. Du
-                                                           China Telecom
+                                                                 T. Yang
+                                  China Broadcast Mobile Network Company
                                                             1 March 2024
 
 
@@ -381,16 +381,16 @@ Authors' Addresses
    Email: shihang9@huawei.com
 
 
-   Tianle Yang
-   China Broadcast Mobile Network Company
-   China
-   Email: yangtianle@10099.com.cn
+   Zongpeng Du
+   China Telecom
+   Email: duzongpeng@foxmail.com
 
 
    Xinxin Yi
    Email: yixx3@chinaunicom.cn
 
 
-   Zongpeng Du
-   China Telecom
-   Email: duzongpeng@foxmail.com
+   Tianle Yang
+   China Broadcast Mobile Network Company
+   China
+   Email: yangtianle@10099.com.cn
