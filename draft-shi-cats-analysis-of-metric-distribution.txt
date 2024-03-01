@@ -7,7 +7,7 @@ Internet-Draft                                       Huawei Technologies
 Intended status: Informational                                     Z. Du
 Expires: 2 September 2024                                   China Mobile
                                                                    X. Yi
-                                                                        
+                                                            China Unicom
                                                                  T. Yang
                                   China Broadcast Mobile Network Company
                                                             1 March 2024
@@ -387,6 +387,7 @@ Authors' Addresses
 
 
    Xinxin Yi
+   China Unicom
    Email: yixx3@chinaunicom.cn
 
 
