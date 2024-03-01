@@ -5,8 +5,12 @@
 Computing-Aware Traffic Steering                                  H. Shi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                                   T. Yang
-Expires: 11 February 2024         China Broadcast Mobile Network Company
-                                                          10 August 2023
+Expires: 2 September 2024         China Broadcast Mobile Network Company
+                                                                   X. Yi
+                                                                        
+                                                                   Z. Du
+                                                           China Telecom
+                                                            1 March 2024
 
 
     Design analysis of methods for distributing the computing metric
@@ -43,11 +47,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 February 2024.
+   This Internet-Draft will expire on 2 September 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -64,16 +68,19 @@ Table of Contents
    1.  Introduction
    2.  Conventions and Definitions
    3.  Requirement of distributing computing metric
-   4.  Option 1: Centralized C-SMA + Centralized C-PS
-   5.  Option 2: Centralized C-SMA + Distributed C-PS
-   6.  Option 3: Distributed C-SMA + Centralized C-PS
-   7.  Option 4: Distributed C-SMA + Distributed C-PS
-   8.  Comparaison
-   9.  Security Considerations
-   10. IANA Considerations
-   11. References
-     11.1.  Normative References
-     11.2.  Informative References
+   4.  Choice 1: Centralized versus Dencentralized
+     4.1.  Option 1: Centralized C-SMA + Centralized C-PS
+     4.2.  Option 2: Centralized C-SMA + Distributed C-PS
+     4.3.  Option 3: Distributed C-SMA + Centralized C-PS
+     4.4.  Option 4: Distributed C-SMA + Distributed C-PS
+     4.5.  Comparaison
+   5.  Choice 2: Push versus Pull
+   6.  Choice 3: Aggregation of metric update messages
+   7.  Security Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -158,26 +165,28 @@ Table of Contents
 
                     Figure 1: CATS Functional Components
 
-4.  Option 1: Centralized C-SMA + Centralized C-PS
+4.  Choice 1: Centralized versus Dencentralized
+
+4.1.  Option 1: Centralized C-SMA + Centralized C-PS
 
    The computing metrics can be collected internally with a hosting
    infrastructure by a centralized monitor of the hosting
-   infrastructure.  Various tools such as Prometheus for this purpose.
-   The monitor can pass the metrics to a network controller, which
-   behaves as a C-PS.  Then, the network controller calculates the
+   infrastructure.  Various tools such as Prometheus can serve this
+   purpose.  The monitor can pass the metrics to a network controller,
+   which behaves as a C-PS.  Then, the network controller calculates the
    optimal path and distribute the paths to CATS ingress routers.  When
    a service request arrives at the CATS ingress router, it just steers
    the request to the path.  The network controller distributed the
    metric update to the C-PS using south-bound protocol.
 
-5.  Option 2: Centralized C-SMA + Distributed C-PS
+4.2.  Option 2: Centralized C-SMA + Distributed C-PS
 
    Similar to option 1, the network controller does not calculate the
    path.  It just passes the computing metrics received from the cloud
    monitor to the C-PS embedded in a CATS ingress router.  The C-PS at
    each CATS ingress router will proceed with path computation locally.
 
-6.  Option 3: Distributed C-SMA + Centralized C-PS
+4.3.  Option 3: Distributed C-SMA + Centralized C-PS
 
    The C-SMA can be deployed in a distributed way.  For example, C-SMA
    running at each site collects the computing metrics of the service
@@ -186,14 +195,14 @@ Table of Contents
    calculates the best path for a service and distribute the path to a
    CATS ingress router.
 
-7.  Option 4: Distributed C-SMA + Distributed C-PS
+4.4.  Option 4: Distributed C-SMA + Distributed C-PS
 
    Similar to option 3, each C-SMA collects the computing metrics of
    each site.  Then it needs to distribute the metric to C-PS at each
    ingress router.  It can do so directly or through a network
    controller.
 
-8.  Comparaison
+4.5.  Comparaison
 
      +=============+========+============+============+==============+
      |             | Option | Option 2   | Option 3   | Option 4     |
@@ -212,17 +221,116 @@ Table of Contents
 
                 Table 1: Comparison between different option
 
-9.  Security Considerations
+5.  Choice 2: Push versus Pull
+
+   There are two primary modes of the metric distribution: push and pull
+   modes.  The push mode operates on the principle of immediate
+   dissemination of computing metrics as soon as they are refreshed.
+   This approach boasts the advantage of timeliness, ensuring that the
+   latest metrics are always available at the cost of frequent updates.
+   The frequency of these updates directly correlates with the rate at
+   which the computing metrics are refreshed.
+
+   Conversely, the pull mode adopts a more reactive strategy, where the
+   latest computing metrics are fetched only upon receiving a specific
+   request for them.  This means that the distribution frequency of
+   computing metrics hinges on the demand of such data, determined by
+   the frequency of incoming service request from each ingress.
+
+   Irrespective of the chosen mode, various optimization techniques can
+   be employed to regulate the frequency of metric distribution
+   effectively.  For instance, in the push mode, setting thresholds can
+   mitigate the rate of updates by preventing the dispatch of new
+   computing metrics unless there is a significant change in the
+   metrics.  This approach reduces unnecessary network traffic and
+   computational overhead but at the potential cost of not always having
+   the most up-to-date information.
+
+   In the pull mode, caching the returned computating metric for a
+   predetermined duration offers a similar optimization.  This method
+   allows for the reuse of previously fetched data, delaying the need
+   for subsequent requests until the cache expires.  While this reduces
+   the load, it introduces a delay in acquiring the latest computing
+   metrics, possibly affecting decision-making processes that rely on
+   the most current data.
+
+   Both push and pull models, despite their inherent differences, share
+   a common challenge: striking a balance between the accuracy of the
+   distributed computating metrics and the overhead associated with
+   their distribution.  Optimizing the distribution frequency through
+   techniques such as threshold setting or caching can help mitigate
+   these challenges.  However, it's important to acknowledge that these
+   optimizations may compromise the precision of scheduling tasks based
+   on these metrics, as the very latest information may not always be
+   available.  This trade-off necessitates a careful consideration of
+   the specific requirements and constraints of the computational
+   environment to determine the most suitable approach.
+
+6.  Choice 3: Aggregation of metric update messages
+
+   Another crucial aspect to consider in the distribution of computing
+   metrics is the potential for aggregating updates.  Specifically, in
+   distributed C-SMA scenarios, where an Egress point connects to
+   multiple sites, it's feasible to consolidate updates from these sites
+   into a single message.  This aggregation strategy significantly
+   reduces the number of individual update messages required,
+   streamlining the process of disseminating computing metric.
+
+   Aggregation can be particularly beneficial in reducing network
+   congestion and optimizing the efficiency of information distribution.
+   By bundling updates, we not only minimize the frequency of messages
+   but also the associated overheads, such as header information and
+   protocol handling costs.  This approach is not limited to distributed
+   environments but is equally applicable in centralized C-SMA
+   scenarios.
+
+   In centralized C-SMA scenarios, a controller responsible for managing
+   computing metric updates to ingress nodes can employ a similar
+   aggregation technique.  By consolidating updates for multiple sites
+   into a single message, the system can significantly decrease the
+   overhead associated with update protocol messages.
+
+   While aggregating computing metrics offers substantial benefits in
+   terms of reducing network traffic and optimizing message efficiency,
+   it's important to address a specific challenge associated with this
+   approach: the potential delay in message timeliness due to the
+   waiting period required for aggregation.  In scenarios where
+   computing metrics from multiple nodes are consolidated into a single
+   update message, the updates from individual nodes might not arrive
+   simultaneously.  This discrepancy can lead to situations where
+   updates must wait for one another before they can be aggregated and
+   sent out.
+
+   This waiting period introduces a delay in the dissemination of
+   computing metrics, which, while beneficial for reducing the volume of
+   update messages and network overhead, can inadvertently affect the
+   system's responsiveness.  The delay in updates might not align well
+   with the dynamic needs of computing resource management, where timely
+   information is crucial for making informed decisions about resource
+   allocation and load balancing.
+
+   Therefore, while the aggregation of updates is an effective strategy
+   for enhancing the efficiency of computing metrics distribution, it
+   necessitates a careful consideration of its impact on the system's
+   ability to respond to changes in computing needs promptly.  Balancing
+   the benefits of reduced message frequency and overhead with the
+   potential delays introduced by aggregation requires a nuanced
+   approach.  This might involve implementing mechanisms to minimize
+   waiting times, such as setting maximum wait times for aggregation or
+   dynamically adjusting aggregation strategies based on the current
+   load and the arrival patterns of updates.
+
+7.  Security Considerations
 
    TBD
 
-10.  IANA Considerations
+8.  IANA Considerations
 
    This document has no IANA actions.
 
-11.  References
+9.  References
 
-11.1.  Normative References
+9.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -233,23 +341,23 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-11.2.  Informative References
+9.2.  Informative References
 
    [I-D.du-cats-computing-modeling-description]
               Du, Z., Fu, Y., Li, C., Huang, D., and Z. Fu, "Computing
               Information Description in Computing-Aware Traffic
               Steering", Work in Progress, Internet-Draft, draft-du-
-              cats-computing-modeling-description-01, 4 July 2023,
+              cats-computing-modeling-description-02, 23 October 2023,
               <https://datatracker.ietf.org/doc/html/draft-du-cats-
-              computing-modeling-description-01>.
+              computing-modeling-description-02>.
 
    [I-D.ldbc-cats-framework]
-              Li, C., Du, Z., Boucadair, M., Contreras, L. M., Drake,
-              J., Huang, D., and G. S. Mishra, "A Framework for
-              Computing-Aware Traffic Steering (CATS)", Work in
-              Progress, Internet-Draft, draft-ldbc-cats-framework-03, 4
-              August 2023, <https://datatracker.ietf.org/doc/html/draft-
-              ldbc-cats-framework-03>.
+              Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
+              Drake, "A Framework for Computing-Aware Traffic Steering
+              (CATS)", Work in Progress, Internet-Draft, draft-ldbc-
+              cats-framework-06, 8 February 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ldbc-cats-
+              framework-06>.
 
    [I-D.yao-cats-ps-usecases]
               Yao, K., Trossen, D., Boucadair, M., Contreras, L. M.,
@@ -277,3 +385,12 @@ Authors' Addresses
    China Broadcast Mobile Network Company
    China
    Email: yangtianle@10099.com.cn
+
+
+   Xinxin Yi
+   Email: yixx3@chinaunicom.cn
+
+
+   Zongpeng Du
+   China Telecom
+   Email: duzongpeng@foxmail.com
