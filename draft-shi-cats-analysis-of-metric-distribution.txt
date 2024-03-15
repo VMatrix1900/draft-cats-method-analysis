@@ -5,12 +5,12 @@
 Computing-Aware Traffic Steering                                  H. Shi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                                     Z. Du
-Expires: 2 September 2024                                   China Mobile
+Expires: 16 September 2024                                  China Mobile
                                                                    X. Yi
                                                             China Unicom
                                                                  T. Yang
                                   China Broadcast Mobile Network Company
-                                                            1 March 2024
+                                                           15 March 2024
 
 
     Design analysis of methods for distributing the computing metric
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 September 2024.
+   This Internet-Draft will expire on 16 September 2024.
 
 Copyright Notice
 
