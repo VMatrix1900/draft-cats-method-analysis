@@ -109,6 +109,11 @@ The CATS functional components are defined in {{?I-D.ldbc-cats-framework}}(see {
 ~~~
 {: #fig-cats-fw title="CATS Functional Components"}
 
+# Overhead of Metric Distribution
+In the context of metric distribution for CATS, whether in a distributed or centralized architecture, one of the key considerations is the overhead involved in transferring metrics between the producers (C-SMA) and consumers (C-PS). This overhead can be defined by the following equation:
+
+Metric Distribution Overhead = Number of Producers × Number of Consumers × Distribution Frequency × Metric Size
+
 # Choice 1: Centralized versus Dencentralized
 
 ## Option 1: Centralized C-SMA + Centralized C-PS
