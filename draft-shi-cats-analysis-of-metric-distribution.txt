@@ -5,12 +5,12 @@
 Computing-Aware Traffic Steering                                  H. Shi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                                     Z. Du
-Expires: 16 September 2024                                  China Mobile
+Expires: 19 April 2025                                      China Mobile
                                                                    X. Yi
                                                             China Unicom
                                                                  T. Yang
                                   China Broadcast Mobile Network Company
-                                                           15 March 2024
+                                                         16 October 2024
 
 
     Design analysis of methods for distributing the computing metric
@@ -47,7 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 September 2024.
+   This Internet-Draft will expire on 19 April 2025.
 
 Copyright Notice
 
@@ -68,19 +68,20 @@ Table of Contents
    1.  Introduction
    2.  Conventions and Definitions
    3.  Requirement of distributing computing metric
-   4.  Choice 1: Centralized versus Dencentralized
-     4.1.  Option 1: Centralized C-SMA + Centralized C-PS
-     4.2.  Option 2: Centralized C-SMA + Distributed C-PS
-     4.3.  Option 3: Distributed C-SMA + Centralized C-PS
-     4.4.  Option 4: Distributed C-SMA + Distributed C-PS
-     4.5.  Comparaison
-   5.  Choice 2: Push versus Pull
-   6.  Choice 3: Aggregation of metric update messages
-   7.  Security Considerations
-   8.  IANA Considerations
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   4.  Overhead of Metric Distribution
+   5.  Choice 1: Centralized versus Dencentralized
+     5.1.  Option 1: Centralized C-SMA + Centralized C-PS
+     5.2.  Option 2: Centralized C-SMA + Distributed C-PS
+     5.3.  Option 3: Distributed C-SMA + Centralized C-PS
+     5.4.  Option 4: Distributed C-SMA + Distributed C-PS
+     5.5.  Comparaison
+   6.  Choice 2: Push versus Pull
+   7.  Choice 3: Aggregation of metric update messages
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -165,9 +166,20 @@ Table of Contents
 
                     Figure 1: CATS Functional Components
 
-4.  Choice 1: Centralized versus Dencentralized
+4.  Overhead of Metric Distribution
 
-4.1.  Option 1: Centralized C-SMA + Centralized C-PS
+   In the context of metric distribution for CATS, whether in a
+   distributed or centralized architecture, one of the key
+   considerations is the overhead involved in transferring metrics
+   between the producers (C-SMA) and consumers (C-PS).  This overhead
+   can be defined by the following equation:
+
+   Metric Distribution Overhead = Number of Producers × Number of
+   Consumers × Distribution Frequency × Metric Size
+
+5.  Choice 1: Centralized versus Dencentralized
+
+5.1.  Option 1: Centralized C-SMA + Centralized C-PS
 
    The computing metrics can be collected internally with a hosting
    infrastructure by a centralized monitor of the hosting
@@ -179,14 +191,14 @@ Table of Contents
    the request to the path.  The network controller distributed the
    metric update to the C-PS using south-bound protocol.
 
-4.2.  Option 2: Centralized C-SMA + Distributed C-PS
+5.2.  Option 2: Centralized C-SMA + Distributed C-PS
 
    Similar to option 1, the network controller does not calculate the
    path.  It just passes the computing metrics received from the cloud
    monitor to the C-PS embedded in a CATS ingress router.  The C-PS at
    each CATS ingress router will proceed with path computation locally.
 
-4.3.  Option 3: Distributed C-SMA + Centralized C-PS
+5.3.  Option 3: Distributed C-SMA + Centralized C-PS
 
    The C-SMA can be deployed in a distributed way.  For example, C-SMA
    running at each site collects the computing metrics of the service
@@ -195,14 +207,14 @@ Table of Contents
    calculates the best path for a service and distribute the path to a
    CATS ingress router.
 
-4.4.  Option 4: Distributed C-SMA + Distributed C-PS
+5.4.  Option 4: Distributed C-SMA + Distributed C-PS
 
    Similar to option 3, each C-SMA collects the computing metrics of
    each site.  Then it needs to distribute the metric to C-PS at each
    ingress router.  It can do so directly or through a network
    controller.
 
-4.5.  Comparaison
+5.5.  Comparaison
 
      +=============+========+============+============+==============+
      |             | Option | Option 2   | Option 3   | Option 4     |
@@ -221,7 +233,7 @@ Table of Contents
 
                 Table 1: Comparison between different option
 
-5.  Choice 2: Push versus Pull
+6.  Choice 2: Push versus Pull
 
    There are two primary modes of the metric distribution: push and pull
    modes.  The push mode operates on the principle of immediate
@@ -266,7 +278,7 @@ Table of Contents
    the specific requirements and constraints of the computational
    environment to determine the most suitable approach.
 
-6.  Choice 3: Aggregation of metric update messages
+7.  Choice 3: Aggregation of metric update messages
 
    Another crucial aspect to consider in the distribution of computing
    metrics is the potential for aggregating updates.  Specifically, in
@@ -320,17 +332,17 @@ Table of Contents
    dynamically adjusting aggregation strategies based on the current
    load and the arrival patterns of updates.
 
-7.  Security Considerations
+8.  Security Considerations
 
    TBD
 
-8.  IANA Considerations
+9.  IANA Considerations
 
    This document has no IANA actions.
 
-9.  References
+10.  References
 
-9.1.  Normative References
+10.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -341,15 +353,15 @@ Table of Contents
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
 
-9.2.  Informative References
+10.2.  Informative References
 
    [I-D.du-cats-computing-modeling-description]
-              Du, Z., Fu, Y., Li, C., Huang, D., and Z. Fu, "Computing
+              Du, Z., Yao, K., Li, C., Huang, D., and Z. Fu, "Computing
               Information Description in Computing-Aware Traffic
               Steering", Work in Progress, Internet-Draft, draft-du-
-              cats-computing-modeling-description-02, 23 October 2023,
+              cats-computing-modeling-description-03, 6 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-du-cats-
-              computing-modeling-description-02>.
+              computing-modeling-description-03>.
 
    [I-D.ldbc-cats-framework]
               Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
