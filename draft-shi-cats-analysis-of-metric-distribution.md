@@ -114,6 +114,8 @@ In the context of metric distribution for CATS, whether in a distributed or cent
 
 Metric Distribution Overhead = Number of Producers × Number of Consumers × Distribution Frequency × Metric Size
 
+The number of producers and consumers is dictated by the scope of the metric distribution. Not all ingress routers need to be aware of the computing metrics from all sites; typically, it is sufficient to distribute metrics only for nearby or relevant sites to optimize scheduling. Additionally, the distribution frequency can be optimized by sending metric updates only when there are significant changes in the metrics, reducing unnecessary transmissions and minimizing overhead while maintaining the accuracy of the scheduling process.
+
 # Choice 1: Centralized versus Dencentralized
 
 ## Option 1: Centralized C-SMA + Centralized C-PS
