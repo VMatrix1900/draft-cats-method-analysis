@@ -1288,6 +1288,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       </h2>
 <p id="section-4-1">In the context of metric distribution for CATS, whether in a distributed or centralized architecture, one of the key considerations is the overhead involved in transferring metrics between the producers (C-SMA) and consumers (C-PS). This overhead can be defined by the following equation:<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">Metric Distribution Overhead = Number of Producers × Number of Consumers × Distribution Frequency × Metric Size<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">The number of producers and consumers is dictated by the scope of the metric distribution. Not all ingress routers need to be aware of the computing metrics from all sites; typically, it is sufficient to distribute metrics only for nearby or relevant sites to optimize scheduling. Additionally, the distribution frequency can be optimized by sending metric updates only when there are significant changes in the metrics, reducing unnecessary transmissions and minimizing overhead while maintaining the accuracy of the scheduling process.<a href="#section-4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="choice-1-centralized-versus-dencentralized">
