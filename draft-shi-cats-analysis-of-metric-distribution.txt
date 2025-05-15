@@ -3,14 +3,15 @@
 
 
 Computing-Aware Traffic Steering                                  H. Shi
-Internet-Draft                                       Huawei Technologies
-Intended status: Informational                                     Z. Du
-Expires: 16 August 2025                                     China Mobile
+Internet-Draft                                                     C. Li
+Intended status: Informational                       Huawei Technologies
+Expires: 16 November 2025                                          Z. Du
+                                                            China Mobile
                                                                    X. Yi
                                                             China Unicom
                                                                  T. Yang
                                   China Broadcast Mobile Network Company
-                                                        12 February 2025
+                                                             15 May 2025
 
 
     Design analysis of methods for distributing the computing metric
@@ -47,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 August 2025.
+   This Internet-Draft will expire on 16 November 2025.
 
 Copyright Notice
 
@@ -401,6 +402,11 @@ Authors' Addresses
    Huawei Technologies
    China
    Email: shihang9@huawei.com
+
+
+   Cheng Li
+   Huawei Technologies
+   Email: c.l@huawei.com
 
 
    Zongpeng Du
