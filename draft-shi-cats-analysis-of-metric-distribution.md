@@ -22,6 +22,11 @@ author:
     email: shihang9@huawei.com
     country: China
  -
+    ins: C. Li
+    fullname: Cheng Li
+    organization: Huawei Technologies
+    email: c.l@huawei.com
+ -
     ins: Z. Du
     fullname: Zongpeng Du
     organization: China Mobile
