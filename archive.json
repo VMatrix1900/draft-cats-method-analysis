@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-04-12T02:32:12.069404+00:00",
+  "timestamp": "2026-04-14T02:30:37.546436+00:00",
   "repo": "VMatrix1900/draft-cats-method-analysis",
   "labels": [
     {
@@ -343,7 +343,7 @@
       "id": "PR_kwDOJYS4a87QGj79",
       "title": "upstream merge template repository",
       "url": "https://github.com/VMatrix1900/draft-cats-method-analysis/pull/9",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "VMatrix1900",
       "authorAssociation": "OWNER",
       "assignees": [],
@@ -352,13 +352,49 @@
       ],
       "body": "Merge https://github.com/martinthomson/internet-draft-template c544c79",
       "createdAt": "2026-04-06T02:32:49Z",
-      "updatedAt": "2026-04-06T02:32:49Z",
+      "updatedAt": "2026-04-13T02:41:20Z",
       "baseRepository": "VMatrix1900/draft-cats-method-analysis",
       "baseRefName": "main",
       "baseRefOid": "582c312386c46898baaf3907e0bac27f9f8724aa",
       "headRepository": "VMatrix1900/draft-cats-method-analysis",
       "headRefName": "chore/template_sync_c544c79",
       "headRefOid": "f0dea86bb9be79d1ad6aeb5853947f7055188529",
+      "closedAt": "2026-04-13T02:41:19Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "VMatrix1900",
+          "authorAssociation": "OWNER",
+          "body": "[actions-template-sync] :construction_worker: automatically closed because there is a new open PR",
+          "createdAt": "2026-04-13T02:41:18Z",
+          "updatedAt": "2026-04-13T02:41:18Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOJYS4a87R2dot",
+      "title": "upstream merge template repository",
+      "url": "https://github.com/VMatrix1900/draft-cats-method-analysis/pull/10",
+      "state": "OPEN",
+      "author": "VMatrix1900",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [
+        "template_sync"
+      ],
+      "body": "Merge https://github.com/martinthomson/internet-draft-template 92e42e9",
+      "createdAt": "2026-04-13T02:41:21Z",
+      "updatedAt": "2026-04-13T02:41:21Z",
+      "baseRepository": "VMatrix1900/draft-cats-method-analysis",
+      "baseRefName": "main",
+      "baseRefOid": "582c312386c46898baaf3907e0bac27f9f8724aa",
+      "headRepository": "VMatrix1900/draft-cats-method-analysis",
+      "headRefName": "chore/template_sync_92e42e9",
+      "headRefOid": "84f5c335e526aaa1b0c1c5829de1e43a44648132",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
